@@ -1,5 +1,9 @@
-import { locService } from './services/loc.service.js'
-import { mapService } from './services/map.service.js'
+import {
+    locService
+} from './services/loc.service.js'
+import {
+    mapService
+} from './services/map.service.js'
 
 window.onload = onInit;
 
@@ -19,7 +23,10 @@ function addEventListenrs() {
     })
     document.querySelector('.btn-add-marker').addEventListener('click', (ev) => {
         console.log('Adding a marker');
-        mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+        mapService.addMarker({
+            lat: 32.0749831,
+            lng: 34.9120554
+        });
     })
     document.querySelector('.btn-get-locs').addEventListener('click', (ev) => {
         locService.getLocs()
@@ -35,12 +42,20 @@ function addEventListenrs() {
                 console.log('User position is:', pos.coords);
                 document.querySelector('.user-pos').innerText =
                     `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+                mapService.panTo(pos.coords.latitude, pos.coords.longitude)
             })
             .catch(err => {
                 console.log('err!!!', err);
             })
     })
+    document.querySelector('.search-input').addEventListener('keypress', (ev) => {
+        if (ev.keyCode === 13) {
+            mapService.onGetSearchInp(document.querySelector('.search-input').value)
+        }
+    })
 }
+
+
 
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -50,4 +65,3 @@ function getPosition() {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
 }
-
