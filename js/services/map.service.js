@@ -1,8 +1,8 @@
+import { locService } from './loc.service.js'
 export const mapService = {
     initMap,
     addMarker,
-    panTo,
-    onGetSearchInp
+    panTo
 }
 
 var gMap;
@@ -14,10 +14,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                    center: {
-                        lat,
-                        lng
-                    },
+                    center: { lat, lng },
                     zoom: 15
                 })
             console.log('Map!', gMap);
@@ -34,10 +31,9 @@ function addMarker(loc) {
     return marker;
 }
 
-function panTo(lat, lng, ) {
+function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
-    gMap.setZoom(15);
 }
 
 function _connectGoogleApi() {
@@ -60,27 +56,5 @@ function onMapClicked() {
 
 function onGetPos(ev) {
     panTo(ev.latLng.lat(), ev.latLng.lng())
-}
-
-function onGetSearchInp(input) {
-    let searchApi = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + input +
-        '&key=AIzaSyB0EIQREreMgVBQpkOR4tl56nYTMLlTn0c'
-    onGetData(searchApi)
-}
-
-function onGetData(link) {
-    const prm = getData(link);
-    prm.then(renderData)
-}
-
-function getData(link) {
-    const prm = axios.get(link)
-        .then(res => res.data)
-    return prm;
-}
-
-function renderData(prm) {
-    const lat = prm.results[0].geometry.location.lat
-    const lng = prm.results[0].geometry.location.lng
-    panTo(lat, lng)
+    locService.saveLocs('loc4', ev.latLng.lat(), ev.latLng.lng(), 'hot');
 }
