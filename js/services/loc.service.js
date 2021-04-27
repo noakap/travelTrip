@@ -14,4 +14,15 @@ function getLocs() {
     });
 }
 
-
+function saveLocs(name, lat, lng, weather) {
+    locs.push({
+        name,
+        lat,
+        lng,
+        weather,
+        createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
+        updatedAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
+        id: ++gId
+    });
+    storageService.saveToStorage('locs', locs)
+}
