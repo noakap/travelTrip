@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 import {
     locService
 } from './services/loc.service.js'
 import {
     mapService
 } from './services/map.service.js'
+=======
+import { locService } from './services/loc.service.js'
+import { mapService } from './services/map.service.js'
+import { storageService } from './services/storage.service.js'
+>>>>>>> 27c9f631d6c7f86c437968d185a777d6650480b0
 
 window.onload = onInit;
 
@@ -17,6 +23,7 @@ function onInit() {
 }
 
 function addEventListenrs() {
+    renderTable();
     document.querySelector('.btn-pan').addEventListener('click', (ev) => {
         console.log('Panning the Map');
         mapService.panTo(35.6895, 139.6917);
@@ -64,4 +71,27 @@ function getPosition() {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
+<<<<<<< HEAD
+=======
+}
+
+function renderTable() {
+    console.log('renderTable');
+    const locs = storageService.loadFromStorage('locs');
+    if (locs === null) return
+    let strHtml = '<tr> <th>name</th> <th>id</th> <th>lat</th> <th>lng</th> <th>weather</th> <th>createdAt</th> <th>updatedAt</th> </tr>';
+    console.log(locs);
+    locs.map((loc) => {
+        strHtml += `<tr><td>${loc.name}</td>
+        <td>${loc.id}</td>
+        <td>${loc.lat}</td>
+        <td>${loc.lng}</td>
+        <td>${loc.weather}</td>
+        <td>${loc.createdAt}</td>
+        <td>${loc.updatedAt}</td>
+        </tr>`
+    })
+    document.querySelector('.table-container').innerHTML += strHtml;
+
+>>>>>>> 27c9f631d6c7f86c437968d185a777d6650480b0
 }
