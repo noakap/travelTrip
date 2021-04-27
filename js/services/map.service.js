@@ -15,11 +15,12 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                center: { lat, lng },
-                zoom: 15
-            })
+                    center: { lat, lng },
+                    zoom: 15
+                })
             console.log('Map!', gMap);
         })
+        .then (() => onMapClicked())
 }
 
 function addMarker(loc) {
@@ -48,4 +49,12 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function onMapClicked() {
+    gMap.addListener('click', onGetPos)
+}
+
+function onGetPos(ev) {
+    console.log('ev', ev.latLng.lat())
 }
