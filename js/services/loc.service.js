@@ -25,7 +25,7 @@ function saveLocs(name, lat, lng, weather) {
         weather,
         createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
         updatedAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
-        id: gId++
+        id: ++gId
     });
     storageService.saveToStorage('locs', locs)
 }
