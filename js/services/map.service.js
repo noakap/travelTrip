@@ -56,5 +56,5 @@ function onMapClicked() {
 }
 
 function onGetPos(ev) {
-    console.log('ev', ev.latLng.lat())
+    panTo(ev.latLng.lat(), ev.latLng.lng())
 }
