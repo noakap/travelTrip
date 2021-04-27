@@ -1,10 +1,12 @@
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylesheet.css">
     <title>TravelTip</title>
 </head>
+
 <body>
     <h1>TravelTip Starter</h1>
     <div id="map" style="width: 100%; height: 400px;"></div>
@@ -13,10 +15,24 @@
     <button class="btn-get-locs">Get Locations</button>
     <button class="btn-pan">Pan Map to Tokyo</button>
 
+    <table class="table-container">
+        <!-- <tr>
+            <th>name</th>
+            <th>id</th>
+            <th>lat</th>
+            <th>lng</th>
+            <th>weather</th>
+            <th>createdAt</th>
+            <th>updatedAt</th>
+        </tr>
+         -->
+    </table>
+
     <p>You are at: <span class="user-pos"></span></p>
     <p>Locations: <span class="locs"></span></p>
-    
+
 
     <script type="module" src="js/app.controller.js"></script>
 </body>
+
 </html>

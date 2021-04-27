@@ -1,3 +1,4 @@
+import { locService } from './loc.service.js'
 export const mapService = {
     initMap,
     addMarker,
@@ -18,7 +19,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 })
             console.log('Map!', gMap);
         })
-        .then (() => onMapClicked())
+        .then(() => onMapClicked())
 }
 
 function addMarker(loc) {
@@ -55,4 +56,5 @@ function onMapClicked() {
 
 function onGetPos(ev) {
     panTo(ev.latLng.lat(), ev.latLng.lng())
+    locService.saveLocs('loc4', ev.latLng.lat(), ev.latLng.lng(), 'hot');
 }
