@@ -1,9 +1,12 @@
+import { storageService } from './storage.service.js'
 export const locService = {
-    getLocs
+    getLocs,
+    saveLocs
 }
+
+var gId = 1
 var locs = [
-    { name: 'Loc1', lat: 32.047104, lng: 34.832384 }, 
-    { name: 'Loc2', lat: 32.047201, lng: 34.832581 }
+    { name: 'Loc1', id: 1, lat: 32.047104, lng: 34.832384, weather: 'hot', createdAt: 1, updatedAt: 1 },
 ]
 
 function getLocs() {
